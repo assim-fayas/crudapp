@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
+
+  <script type="text/javascript" charset="utf8"
+    src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
+</head>
+
+<body>
+  <div class="container mt-5">
+    <div class="d-flex justify-content-between mb-3">
+      <!-- <input type="text" class="form-control mr-3" placeholder="Search"> -->
+      <a href="/admin/addUser"> <button class="btn btn-primary mr-3">Add</button></a>
+      <a href="/admin/logout" class="btn btn-secondary">Logout</a>
+    </div>
+    <table class="table" id="productTables">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Mobile Number</th>
+          <th>Password</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for (var i=0; i < users.length; i++) { %>
+          <tr>
+            <td>
+              <%= users[i].name %>
+            </td>
+            <td>
+              <%= users[i].email %>
+            </td>
+            <td>
+              <%= users[i].mobile %>
+            </td>
+            <td>
+              <%= users[i].password %>
+            </td>
+            <td>
+              <a href="/admin/deleteUser?id=<%= users[i]._id %>"><button class="btn btn-danger mr-2">Delete</button></a>
+              <a href="/admin/updateUser?id=<%= users[i]._id %>"><button class="btn btn-success">Update</button></a>
+            </td>
+          </tr>
+          <% } %>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    $(document).ready(function () {
+      $('#productTables').DataTable();
+    });
+  </script>
+</body>
+
+</html>
